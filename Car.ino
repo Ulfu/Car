@@ -25,8 +25,7 @@ void setup() {
 
 void loop() {
 
-  // read the value of the on/off switch
-  onOffSwitchState = digitalRead(onOffSwitchStateSwitchPin);
+
   delay(1);
   long cm;
   ping(cm);
