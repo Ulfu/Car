@@ -21,14 +21,16 @@ void setup() {
   digitalWrite(enableLeftPin, LOW);
   digitalWrite(enableRightPin, LOW);
 
+  // initialize serial communication:
+  Serial.begin(9600);
+
 }
 
 void loop() {
 
 
   delay(1);
-  long cm;
-  ping(cm);
+  long cm = ping();
 
   if (cm < 10) {
     backGoLeft();
@@ -44,24 +46,22 @@ void backGoLeft() {
     // to the control pins on the H-Bridge
     digitalWrite(rightMotorPin1, LOW);
     digitalWrite(rightMotorPin2, HIGH);
-    analogWrite(enableRightPin,10);
+    analogWrite(enableRightPin,50);
 
     digitalWrite(leftMotorPin1, HIGH);
     digitalWrite(leftMotorPin2, LOW);
-    analogWrite(enableLeftPin, 50);
+    analogWrite(enableLeftPin, 500);
 
-    
-    delay(500);
 }
 
 void forward() {
     digitalWrite(rightMotorPin1, LOW);
     digitalWrite(rightMotorPin2, HIGH);
-    digitalWrite(enableRightPin,HIGH);
+    digitalWrite(enableRightPin, HIGH);
 
     digitalWrite(leftMotorPin1, LOW);
     digitalWrite(leftMotorPin2, HIGH);
-    digitalWrite(enableLeftPin,HIGH);
+    digitalWrite(enableLeftPin, HIGH);
     
     delay(1);
 }
@@ -72,8 +72,8 @@ void stay() {
     delay(1);
 }
 
-long ping(long cm) {
-    long duration;
+long ping() {
+    long duration, cm;
 
     // The PING))) is triggered by a HIGH pulse of 2 or more microseconds.
     // Give a short LOW pulse beforehand to ensure a clean HIGH pulse:
