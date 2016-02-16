@@ -5,11 +5,17 @@ const int rightMotorPin2 = 6;
 const int enableLeftPin = 9;   // connected to pin 1 on the H-bridge
 const int enableRightPin = 10;
 
+const int onButton = 4;
+
 const int pingPin = 8;
 const int echoPin = 7;
 
-void setup() {
+int on = false;
+int buttonLastState = false;
+int buttonCurrentState = false;
 
+void setup() {
+  pinMode(onButton, INPUT);
   pinMode(leftMotorPin1, OUTPUT);
   pinMode(leftMotorPin2, OUTPUT);
   pinMode(enableLeftPin, OUTPUT);
@@ -27,16 +33,29 @@ void setup() {
 }
 
 void loop() {
-
-
+  buttonCurrentState = digitalRead(onButton);
+ 
+  if (buttonCurrentState != buttonLastState && buttonCurrentState == HIGH) {
+    on = !on;
+    Serial.print(on);
+    delay(200);
+    if (on) {
+      delay(2000);
+    }
+    
+  }
+  
   delay(1);
   long cm = ping();
 
-  if (cm < 10) {
+  if (cm < 25 && on) {
     backGoLeft();
   }
-  else {
+  else if (on){
     forward();
+  }
+  else {
+    stay();
   }
 }
 
