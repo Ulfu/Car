@@ -57,11 +57,11 @@ void backGoLeft() {
 void forward() {
     digitalWrite(rightMotorPin1, LOW);
     digitalWrite(rightMotorPin2, HIGH);
-    analogWrite(enableRightPin,250);
+    digitalWrite(enableRightPin,HIGH);
 
     digitalWrite(leftMotorPin1, LOW);
     digitalWrite(leftMotorPin2, HIGH);
-    analogWrite(enableLeftPin,250);
+    digitalWrite(enableLeftPin,HIGH);
     
     delay(1);
 }
