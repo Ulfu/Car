@@ -84,7 +84,7 @@ void backGoRight() {
 
     digitalWrite(rightMotorPin1, HIGH);
     digitalWrite(rightMotorPin2, LOW);
-    analogWrite(enableRightPin, 500);
+    analogWrite(enableRightPin, 255);
 
     delay(20);
 }
@@ -96,7 +96,7 @@ void goLeft() {
 
     digitalWrite(leftMotorPin1, LOW);
     digitalWrite(leftMotorPin2, HIGH);
-    analogWrite(enableLeftPin, 500);
+    analogWrite(enableLeftPin, 150);
     
     delay(1);
 }
@@ -104,7 +104,7 @@ void goLeft() {
 void goRight() {
     digitalWrite(rightMotorPin1, LOW);
     digitalWrite(rightMotorPin2, HIGH);
-    analogWrite(enableRightPin, 500);
+    analogWrite(enableRightPin, 150);
 
     digitalWrite(leftMotorPin1, LOW);
     digitalWrite(leftMotorPin2, HIGH);
